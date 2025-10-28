@@ -1,13 +1,12 @@
-# Ignore problematic directories
-AppData/
-ElevatedDiagnostics/
-Temp/
-Local/
-Perplexity/
-OneDrive/
-.vscode/
-*.log
+node_modules/
+.expo/
+.expo-shared/
+npm-debug.log
+yarn-error.log
 .DS_Store
-*.xml
-*.tmp
-*.aodl
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+

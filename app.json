@@ -1,14 +1,11 @@
 {
   "expo": {
     "name": "RDM Assistant",
-    "slug": "huu",
+    "slug": "rdm-assistant",
     "version": "1.0.0",
     "sdkVersion": "54.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "plugins": [
-      "expo-font"
-    ],
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
