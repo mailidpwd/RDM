@@ -196,6 +196,12 @@ export default function MoodHabitRecommendationsModal({
   console.log('calculatedAssessment exists:', !!calculatedAssessment);
 
   const addHabitToDashboard = async () => {
+    if (!recommendedHabit) {
+      console.error('❌ No recommended habit available!');
+      Alert.alert('Error', 'No habit recommendation available. Please try again.');
+      return;
+    }
+
     setIsAdding(true);
     try {
       console.log('📝 Adding habit to dashboard...');
@@ -204,10 +210,10 @@ export default function MoodHabitRecommendationsModal({
       
       const goal = {
         id: generateId(),
-        title: recommendedHabit.title,
-        description: recommendedHabit.description,
+        title: recommendedHabit.title || 'Untitled Habit',
+        description: recommendedHabit.description || '',
         category: 'Mood Assessment', // CRITICAL: Use exact string for filtering
-        subcategory: recommendedHabit.type,
+        subcategory: recommendedHabit.type || 'Unknown',
         frequency: 'Daily',
         reflection: 'Everyday',
         pledgeAmount: 1,
@@ -231,7 +237,7 @@ export default function MoodHabitRecommendationsModal({
       ]);
     } catch (error) {
       console.error('❌ Error adding habit:', error);
-      Alert.alert('Error', 'Failed to add habit. Please try again.');
+      Alert.alert('Error', `Failed to add habit: ${error.message}`);
     } finally {
       setIsAdding(false);
     }

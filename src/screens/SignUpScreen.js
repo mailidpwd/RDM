@@ -48,21 +48,26 @@ export default function SignUpScreen({ navigation, route }) {
       
       // Check if there's a temp quiz score to save
       try {
-        // First check if tempScore was passed as param
-        if (tempScore && tempScore.category && tempScore.score) {
-          await UserDataService.saveQuizScore(tempScore.category, tempScore.score, email);
-          console.log('✅ Temp quiz score from params saved for new user');
-        }
-        
-        // Also check AsyncStorage for temp quiz score (backward compatibility)
+        // Also check AsyncStorage for temp quiz score
         const tempScoreJson = await AsyncStorage.getItem('temp_quiz_score');
         if (tempScoreJson) {
           const tempData = JSON.parse(tempScoreJson);
           await UserDataService.saveQuizScore(tempData.category, tempData.score, email);
+          console.log('✅ Temp quiz score from storage saved for new user');
+          
+          // Also restore detailed responses if they exist
+          const tempResponsesJson = await AsyncStorage.getItem('temp_quiz_responses');
+          if (tempResponsesJson) {
+            const tempResponses = JSON.parse(tempResponsesJson);
+            if (tempResponses.category === tempData.category && tempResponses.responses) {
+              await UserDataService.saveDetailedQuizResponses(tempData.category, tempResponses.responses, email);
+              console.log('✅ Temp detailed responses saved for new user');
+              await AsyncStorage.removeItem('temp_quiz_responses');
+            }
+          }
           
           // Clear temp score
           await AsyncStorage.removeItem('temp_quiz_score');
-          console.log('✅ Temp quiz score from storage saved for new user');
         }
       } catch (error) {
         console.error('Error saving temp quiz score:', error);

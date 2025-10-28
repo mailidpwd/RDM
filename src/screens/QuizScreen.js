@@ -311,10 +311,22 @@ export default function QuizScreen({ route, navigation }) {
   const saveScoreForNewUser = async () => {
     // Store the score temporarily
     await AsyncStorage.setItem('temp_quiz_score', JSON.stringify({
-      category,
+      category: normalizedCategory,
       score: calculatedScore
     }));
-    console.log('Temp score stored:', { category, score: calculatedScore });
+    console.log('Temp score stored:', { category: normalizedCategory, score: calculatedScore });
+    
+    // Also save detailed responses temporarily
+    const detailedResponses = questions.map((q, index) => ({
+      heading: q.heading,
+      question: q.question,
+      answer: answers[index],
+    }));
+    await AsyncStorage.setItem('temp_quiz_responses', JSON.stringify({
+      category: normalizedCategory,
+      responses: detailedResponses
+    }));
+    console.log('Temp detailed responses stored for:', normalizedCategory);
   };
 
   const handleCompletionSkip = async () => {

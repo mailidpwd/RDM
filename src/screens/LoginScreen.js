@@ -38,6 +38,17 @@ export default function LoginScreen({ navigation, route }) {
           // Use UserDataService to save the score
           await UserDataService.saveQuizScore(tempData.category, tempData.score, email);
           
+          // Also restore detailed responses if they exist
+          const tempResponsesJson = await AsyncStorage.getItem('temp_quiz_responses');
+          if (tempResponsesJson) {
+            const tempResponses = JSON.parse(tempResponsesJson);
+            if (tempResponses.category === tempData.category && tempResponses.responses) {
+              await UserDataService.saveDetailedQuizResponses(tempData.category, tempResponses.responses, email);
+              console.log('✅ Temp detailed responses saved on login');
+              await AsyncStorage.removeItem('temp_quiz_responses');
+            }
+          }
+          
           // Clear temp score
           await AsyncStorage.removeItem('temp_quiz_score');
           console.log('✅ Temp quiz score saved on login');

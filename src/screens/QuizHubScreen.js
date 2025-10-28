@@ -334,7 +334,18 @@ const QuizCategoryCard = ({ title, category, score, iconName, color, onPress, im
                   });
                 } else {
                   console.log('⚠️ No habits found');
-                  Alert.alert('No Data', `Please complete a ${category} quiz first to get personalized recommendations.`);
+                  
+                  // Get score to provide better error message
+                  const score = await UserDataService.getQuizScore(category, email);
+                  
+                  if (score > 0) {
+                    Alert.alert(
+                      'Working on Recommendations', 
+                      'Your quiz data is being processed. Please retake the quiz to ensure all responses are saved, or wait a moment and try again.'
+                    );
+                  } else {
+                    Alert.alert('No Data', `Please complete a ${category} quiz first to get personalized recommendations.`);
+                  }
                 }
               } catch (error) {
                 console.error('❌ Error in handleEnhanceDailyRoutine:', error);

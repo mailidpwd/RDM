@@ -193,7 +193,31 @@ class UserDataService {
         const key = 'detailed_responses';
         const allResponses = await LocalStorageService.getUserData(email, key, {});
         console.log('   All saved response keys:', Object.keys(allResponses));
-        return []; // Return empty array - no mutation
+        
+        // Check if quiz was partially completed (has score but no detailed responses)
+        const score = await this.getQuizScore(category, email);
+        console.log('   Quiz score:', score);
+        
+        if (score > 0) {
+          // Quiz was partially completed - return default habits for the category
+          console.log('   ⚠️ Partial completion detected - returning default habits');
+          const defaultHabits = this.getAllHabitsForCategory(category);
+          
+          // Return first 3-5 default habits as MEDIUM priority
+          const limitedHabits = defaultHabits.slice(0, 5).map((habit, index) => ({
+            habit: habit,
+            score: 3, // Default medium priority
+            priority: 'MEDIUM',
+            priorityColor: '#FFD93D', // Yellow
+            question: `Focus on ${habit}`,
+            heading: 'general_improvement',
+          }));
+          
+          console.log(`   ✅ Returning ${limitedHabits.length} default habits for partial completion`);
+          return limitedHabits;
+        }
+        
+        return []; // Return empty array only if no score exists
       }
       
       // Step 2: Create a NEW array (don't mutate input)
