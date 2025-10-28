@@ -9,4 +9,15 @@ yarn-error.log
 *.mobileprovision
 *.orig.*
 web-build/
-
+*.txt
+AppData/
+ElevatedDiagnostics/
+Temp/
+Local/
+Perplexity/
+OneDrive/
+*.xml
+*.tmp
+*.aodl
+android/
+ios/
