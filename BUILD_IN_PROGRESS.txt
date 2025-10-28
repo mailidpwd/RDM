@@ -1,0 +1,17 @@
+🚀 BUILD IS IN PROGRESS!
+
+Build ID: c90e4865-83f7-4309-bac6-eb4a690a3815
+Status: in progress
+Started: 28/10/2025, 1:11:26 pm
+
+📍 View Live Logs:
+https://expo.dev/accounts/audacad/projects/huu/builds/c90e4865-83f7-4309-bac6-eb4a690a3815
+
+⏱️  Usually takes 10-15 minutes
+
+✅ When it completes successfully, you'll get:
+- A download link for your APK
+- Or the terminal will show "Build successful"
+
+❌ If it fails, check the logs link above to see the error
+
