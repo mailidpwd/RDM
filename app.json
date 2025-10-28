@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "RDM Assistant",
+    "slug": "huu",
+    "version": "1.0.0",
+    "sdkVersion": "54.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#20C997"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#20C997"
+      },
+      "package": "com.rdm.assistant"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9e362ade-1f62-4e79-a7a1-63d25dcaece3"
+      }
+    },
+    "owner": "audacad"
+  }
+}

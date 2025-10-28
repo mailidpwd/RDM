@@ -1,0 +1,13 @@
+# Ignore problematic directories
+AppData/
+ElevatedDiagnostics/
+Temp/
+Local/
+Perplexity/
+OneDrive/
+.vscode/
+*.log
+.DS_Store
+*.xml
+*.tmp
+*.aodl
