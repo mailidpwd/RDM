@@ -1,12 +1,11 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import DashboardScreen from './src/screens/DashboardScreen';
+import { StyleSheet, View, Text } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <DashboardScreen />
+      <Text style={styles.text}>RDM Assistant</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -16,5 +15,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
